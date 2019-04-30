@@ -1,0 +1,2 @@
+#Evita navegar por directorios
+Deny from All

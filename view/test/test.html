@@ -1,0 +1,59 @@
+<div class="titulo-pantalla">
+	<h1 class="color-sistema-secundario">TEST</h1>
+</div>
+<div class="contenedor">
+	
+	<div class="componente-informacion-largo">
+		<hr class="linea-solida">
+		<h3>Mis notas del día</h3>
+		<hr class="linea-solida">
+	</div>				
+	
+	<div class="componente-formulario-largo ocultar">
+		<div class="componente-botones-centrados">
+			<input type="button" value="+ Agregar nota" class="aceptar alineacion-centro display-great" onclick="agregarNota('Activar','','','')" />
+		</div>
+	</div>
+
+	<div class="botones-flotantes display-mini">
+		<input type="button" value="+ Agregar nota" class="aceptar-largo display-mini" onclick="agregarNota('Activar','','','')" />
+	</div>
+
+	<div id="seguimiento-muestra" style="display:none;"></div>
+
+	<?php
+	//Validación para corroborar que existan NOTAS
+	if($notas){
+		//Bucle para obtener las Notas del Ticket
+		for($i=0;$i<sizeof($notas);$i++){
+		?>
+
+		<div class="contenedor-seguimiento" id="contenedor-seguimiento-<?php echo $i?>">
+			<div class="usuario-seguimiento">
+				<img src="images/usuarios/user-man.png" class="foto-usuario" alt="Foto de usuario"/>
+				<br/>
+				<label><?php echo $notas[$i]['nombre_usuario']?></label>
+			</div>
+			<div class="seguimiento">
+				<p><?php echo $notas[$i]['descripcion_nota']?></p>
+			</div>
+			<label class="date-seguimiento"><?php echo 'Nota '.$notas[$i]['tipo_nota'].' | '.$notas[$i]['fecha_hora_nota']?></label>
+			<div class="linea-seguimiento"></div>
+			<div class="opcion-eliminacion" onclick="eliminarNota(<?php echo $notas[$i]['id_nota']?>,'contenedor-seguimiento-<?php echo $i?>')">
+				<img src="images/lib/eliminar.png" alt="Eliminar seguimiento"/>
+			</div>
+		</div>
+			
+		<?php
+		}
+	}
+	else{
+	?>
+		<div style="width:80%;padding:30px 0;background:rgba(3,158,168,0.3);border:1px solid #039EA8;float:left;margin:5px 10%;text-align:center;">
+			<p>Aún no hay notas agregadas.</p>
+		</div>
+	<?php
+	}
+	?>
+	
+</div>

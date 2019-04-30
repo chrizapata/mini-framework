@@ -1,0 +1,32 @@
+#Evita navegar por directorios
+Options All -Indexes
+
+#Declaración de Errores
+#ErrorDocument 401 http://ia-ti.serviceclient.com.mx
+#ErrorDocument 403 http://ia-ti.serviceclient.com.mx
+#ErrorDocument 404 http://ia-ti.serviceclient.com.mx
+#ErrorDocument 500 http://ia-ti.serviceclient.com.mx
+
+#Fechas de Caducidad para archivos en Cache
+<ifmodule mod_expires.c>
+ 	<filesmatch "\.(jpg|JPG|gif|GIF|png|css|ico|js)$">
+	 	ExpiresActive on
+	 	ExpiresDefault "access plus 7 day"
+ 	</filesmatch>
+</ifmodule>
+
+#Compresión de ficheros planos
+<ifModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/xml text/css text/plain
+  AddOutputFilterByType DEFLATE image/svg+xml application/xhtml+xml application/xml
+  AddOutputFilterByType DEFLATE application/rdf+xml application/rss+xml application/atom+xml
+  AddOutputFilterByType DEFLATE text/javascript application/javascript application/x-javascript application/json
+  AddOutputFilterByType DEFLATE application/x-font-ttf application/x-font-otf
+  AddOutputFilterByType DEFLATE font/truetype font/opentype
+</ifModule>
+
+
+#php_value upload_max_filesize 140M
+#php_value post_max_size 140M
+#php_value max_execution_time 3000
+#php_value max_input_time 3000
